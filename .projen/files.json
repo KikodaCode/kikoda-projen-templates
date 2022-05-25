@@ -16,7 +16,10 @@
     ".projen/deps.json",
     ".projen/files.json",
     ".projen/tasks.json",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
     "LICENSE",
+    "NOTICE",
     "tsconfig.dev.json",
     "tsconfig.json"
   ],

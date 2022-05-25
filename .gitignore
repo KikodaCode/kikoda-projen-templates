@@ -51,3 +51,6 @@ junit.xml
 /lib
 /dist/
 !/.eslintrc.json
+!/NOTICE
+!/CONTRIBUTING.md
+!/CODE_OF_CONDUCT.md
