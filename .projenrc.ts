@@ -13,7 +13,6 @@ const project = new typescript.TypeScriptProject({
   tsconfig: { compilerOptions: { esModuleInterop: true } },
   docgen: false,
   pullRequestTemplate: false,
-  readme: undefined,
   releaseToNpm: true,
 
   deps: ['projen'] /* Runtime dependencies of this module. */,
