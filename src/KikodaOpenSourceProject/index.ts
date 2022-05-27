@@ -1,72 +1,92 @@
 import { existsSync } from 'fs';
-import { Project, ProjectOptions, TextFile } from 'projen';
-import { ConstructLibraryOptions } from 'projen/lib/cdk';
-import { TrailingComma, ArrowParens, EndOfLine } from 'projen/lib/javascript';
+import { Component, TextFile } from 'projen';
+import { ArrowParens, EndOfLine, NodeProject, TrailingComma } from 'projen/lib/javascript';
 
-export class KikodaOpenSourceProject {
-  readonly options: Partial<ConstructLibraryOptions | ProjectOptions>;
-
-  constructor() {
-    this.options = {
-      author: 'Kikoda, LLC',
-      authorName: 'Kikoda, LLC',
-      authorAddress: 'platform@kikoda.com',
-      authorOrganization: true,
-      defaultReleaseBranch: 'main',
-      license: 'Apache-2.0',
-      projenrcTs: true,
-      devContainer: true,
-      vscode: true,
-      docgen: true,
-      prettier: true,
-      tsconfig: { compilerOptions: { esModuleInterop: true } },
-      prettierOptions: {
-        settings: {
-          printWidth: 100,
-          tabWidth: 2,
-          useTabs: false,
-          semi: true,
-          singleQuote: true,
-          trailingComma: TrailingComma.ALL,
-          arrowParens: ArrowParens.AVOID,
-          endOfLine: EndOfLine.LF,
-        },
-      },
-      pullRequestTemplateContents: [
-        `## Proposed changes`,
-        '',
-        `_Describe the big picture of your changes here to communicate to the maintainers why we should accept this pull request.If it fixes a bug or resolves a feature request, be sure to link to that issue._`,
-        '',
-        `### Commentary`,
-        '',
-        `_Anything else we should know when reviewing?_`,
-        '',
-        `### Types of Changes`,
-        '',
-        `What types of changes does your code introduce? _Chedk all the boxes that apply_`,
-        '',
-        `- [ ] Bugfix (non - breaking change which fixes an issue)`,
-        `- [ ] New feature or Enhancement (non - breaking change which adds functionality)`,
-        `- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)`,
-        `- [ ] Chore (documentation, refactoring, dependency upgrade, etc.)`,
-        '',
-        `### Chores`,
-        '',
-        `_Check all the boxes that apply_`,
-        '',
-        `- [ ] This PR includes breaking changes which are documented in the description and associated commit messages (see the [Contributing Guide](../CONTRIBUTING.md) for more information on how this should be done)`,
-        `- [ ] This PR impacts documentation, and it has been updated(or an issue has been created and linked)`,
-        `- [ ] This PR's changes are covered by the automated tests`,
-      ],
-    };
+export class InvalidLicenseError extends Error {
+  constructor(invalidLicense: string) {
+    super(
+      `Kikoda Open Source Projects must be licensed under the Apache 2.0 open source license. Change the current license from '${invalidLicense}' to 'Apache-2.0'`,
+    );
   }
+}
 
-  public addSupportingArtifacts = (
-    project: Project,
-    options: { title: string; packageName: string; repoUrl: string },
-  ) => {
-    // Generate a NOTICE file for license
-    new TextFile(project, 'NOTICE', {
+export class DefaultPrTemplateError extends Error {
+  constructor() {
+    super(
+      'Pull Request Template already exists. Disable the existing PR template to use this component',
+    );
+  }
+}
+
+export const KikodaStandards = {
+  PrettierOptions: {
+    settings: {
+      printWidth: 100,
+      tabWidth: 2,
+      useTabs: false,
+      semi: true,
+      singleQuote: true,
+      trailingComma: TrailingComma.ALL,
+      arrowParens: ArrowParens.AVOID,
+      endOfLine: EndOfLine.LF,
+    },
+  },
+};
+
+export enum SupportingFiles {
+  LICENSE = 'LICENSE',
+  NOTICE = 'NOTICE',
+  README = 'README.md',
+  CODE_OF_CONDUCT = 'CODE_OF_CONDUCT.md',
+  CONTRIBUTING = 'CONTRIBUTING.md',
+}
+
+/**
+ * Options used to generate Kikoda Open Source Project and Artifacts
+ *
+ * @export
+ * @interface KikodaOpenSourceProjectOptions
+ * @typedef {KikodaOpenSourceProjectOptions}
+ */
+export interface KikodaOpenSourceProjectOptions {
+  /**
+   * Describe your project. This will be used in various files like README, NOTICE, etc.
+   *
+   * @readonly
+   * @type {string}
+   */
+  title: string;
+}
+
+/**
+ * Generates standardized files and artifacts associated with a Kikoda
+ * Open Source Project.
+ *
+ * @export
+ * @class KikodaOpenSourceProject
+ * @typedef {KikodaOpenSourceProject}
+ * @template T extends NodeProject
+ * @extends {Component}
+ */
+export class KikodaOpenSourceProject<T extends NodeProject> extends Component {
+  /**
+   * Creates an instance of KikodaOpenSourceProject.
+   *
+   * @constructor
+   * @param {T} project
+   * @param {KikodaOpenSourceProjectOptions} options
+   */
+  constructor(project: T, options: KikodaOpenSourceProjectOptions) {
+    super(project);
+
+    project.package.addField('private', 'false');
+
+    project.package.addField('author', { name: 'Kikoda, LLC', organization: true });
+
+    if (project.package.license !== 'Apache-2.0')
+      throw new InvalidLicenseError(project.package.license!);
+
+    new TextFile(project, SupportingFiles.NOTICE, {
       marker: false,
       lines: [
         options.title,
@@ -76,7 +96,41 @@ export class KikodaOpenSourceProject {
       ],
     });
 
-    new TextFile(project, 'CONTRIBUTING.md', {
+    // Remove existing PR Template...
+    try {
+      project.github?.addPullRequestTemplate(
+        ...[
+          '## Proposed changes',
+          '',
+          '_Describe the big picture of your changes here to communicate to the maintainers why we should accept this pull request.If it fixes a bug or resolves a feature request, be sure to link to that issue._',
+          '',
+          '### Commentary',
+          '',
+          '_Anything else we should know when reviewing?_',
+          '',
+          '### Types of Changes',
+          '',
+          'What types of changes does your code introduce? _Chedk all the boxes that apply_',
+          '',
+          '- [ ] Bugfix (non - breaking change which fixes an issue)',
+          '- [ ] New feature or Enhancement (non - breaking change which adds functionality)',
+          '- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)',
+          '- [ ] Chore (documentation, refactoring, dependency upgrade, etc.)',
+          '',
+          '### Chores',
+          '',
+          '_Check all the boxes that apply_',
+          '',
+          '- [ ] This PR includes breaking changes which are documented in the description and associated commit messages (see the [Contributing Guide](../CONTRIBUTING.md) for more information on how this should be done)',
+          '- [ ] This PR impacts documentation, and it has been updated(or an issue has been created and linked)',
+          "- [ ] This PR's changes are covered by the automated tests",
+        ],
+      );
+    } catch {
+      throw new DefaultPrTemplateError();
+    }
+
+    new TextFile(project, SupportingFiles.CONTRIBUTING, {
       marker: true,
       lines: [
         '# Contributing',
@@ -100,7 +154,7 @@ export class KikodaOpenSourceProject {
       ],
     });
 
-    new TextFile(project, 'CODE_OF_CONDUCT.md', {
+    new TextFile(project, SupportingFiles.CODE_OF_CONDUCT, {
       marker: true,
       lines: [
         '# Contributor Covenant Code of Conduct',
@@ -238,26 +292,26 @@ export class KikodaOpenSourceProject {
       ],
     });
 
-    if (!existsSync('README.md')) {
-      new TextFile(project, 'README.md', {
+    if (!existsSync(SupportingFiles.README) && !project.tryFindFile(SupportingFiles.README)) {
+      new TextFile(project, SupportingFiles.README, {
         marker: false,
         readonly: false,
         lines: [
           '[<img src="https://kikoda.com/wp-content/uploads/2019/07/Logo_White_bg.svg" width="300"/>](https://kikoda.com)',
-          '# Kikoda CDKTF Constructs Library',
+          `# ${options.title}`,
           '',
-          `[![NPM](https://img.shields.io/npm/v/${options.packageName}?color=39a356&label=npm+cdk+v2)](https://www.npmjs.com/package/${options.packageName})`,
-          `[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](${options.repoUrl}/blob/main/LICENSE)`,
+          `[![NPM](https://img.shields.io/npm/v/${project.package.packageName}?color=39a356&label=npm+cdk+v2)](https://www.npmjs.com/package/${project.package.packageName})`,
+          `[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](${project.package.manifest.repository.url}/blob/main/LICENSE)`,
           '',
           `Use this ${options.title} to architect and model modern applications`,
           '',
           '## Install from NPM:',
           '```',
-          `yarn add --dev ${options.packageName}`,
+          `yarn add --dev ${project.package.packageName}`,
           '',
           '# or',
           '',
-          `npm install ${options.packageName} --save-dev`,
+          `npm install ${project.package.packageName} --save-dev`,
           '```',
           '',
           '## Usage',
@@ -287,5 +341,5 @@ export class KikodaOpenSourceProject {
         ],
       });
     }
-  };
+  }
 }
