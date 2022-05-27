@@ -2,7 +2,21 @@ import { existsSync } from 'fs';
 import { Component, TextFile } from 'projen';
 import { ArrowParens, EndOfLine, NodeProject, TrailingComma } from 'projen/lib/javascript';
 
+/**
+ * Error thrown when the package license is not Apache 2.0
+ *
+ * @export
+ * @class InvalidLicenseError
+ * @typedef {InvalidLicenseError}
+ * @extends {Error}
+ */
 export class InvalidLicenseError extends Error {
+  /**
+   * Creates an instance of InvalidLicenseError.
+   *
+   * @constructor
+   * @param {string} invalidLicense
+   */
   constructor(invalidLicense: string) {
     super(
       `Kikoda Open Source Projects must be licensed under the Apache 2.0 open source license. Change the current license from '${invalidLicense}' to 'Apache-2.0'`,
@@ -10,7 +24,20 @@ export class InvalidLicenseError extends Error {
   }
 }
 
+/**
+ * Error thrown when the default Pull Request teplate is enabled.
+ *
+ * @export
+ * @class DefaultPrTemplateError
+ * @typedef {DefaultPrTemplateError}
+ * @extends {Error}
+ */
 export class DefaultPrTemplateError extends Error {
+  /**
+   * Creates an instance of DefaultPrTemplateError.
+   *
+   * @constructor
+   */
   constructor() {
     super(
       'Pull Request Template already exists. Disable the existing PR template to use this component',
@@ -18,6 +45,9 @@ export class DefaultPrTemplateError extends Error {
   }
 }
 
+/**
+ * Collection of sensible defaults for use in Projen options/constructors
+ */
 export const KikodaStandards = {
   PrettierOptions: {
     settings: {
@@ -33,6 +63,12 @@ export const KikodaStandards = {
   },
 };
 
+/**
+ * Supporting files path enumeration
+ *
+ * @export
+ * @enum {number}
+ */
 export enum SupportingFiles {
   LICENSE = 'LICENSE',
   NOTICE = 'NOTICE',
