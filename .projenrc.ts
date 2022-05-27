@@ -14,6 +14,7 @@ const project = new typescript.TypeScriptProject({
   docgen: false,
   pullRequestTemplate: false,
   readme: undefined,
+  releaseToNpm: true,
 
   deps: ['projen'] /* Runtime dependencies of this module. */,
   peerDeps: ['projen'],

@@ -334,7 +334,7 @@ export class KikodaOpenSourceProject<T extends NodeProject> extends Component {
           '[<img src="https://kikoda.com/wp-content/uploads/2019/07/Logo_White_bg.svg" width="300"/>](https://kikoda.com)',
           `# ${options.title}`,
           '',
-          `[![NPM](https://img.shields.io/npm/v/${project.package.packageName}?color=39a356&label=npm+cdk+v2)](https://www.npmjs.com/package/${project.package.packageName})`,
+          `[![NPM](https://img.shields.io/npm/v/${project.package.packageName}?color=39a356)](https://www.npmjs.com/package/${project.package.packageName})`,
           `[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](${project.package.manifest.repository.url}/blob/main/LICENSE)`,
           '',
           `Use this ${options.title} to architect and model modern applications`,

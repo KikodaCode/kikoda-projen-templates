@@ -1,7 +1,7 @@
 [<img src="https://kikoda.com/wp-content/uploads/2019/07/Logo_White_bg.svg" width="300"/>](https://kikoda.com)
 # Kikoda Projen Templates
 
-[![NPM](https://img.shields.io/npm/v/@kikoda/projen-templates?color=39a356&label=npm+cdk+v2)](https://www.npmjs.com/package/@kikoda/projen-templates)
+[![NPM](https://img.shields.io/npm/v/@kikoda/projen-templates?color=39a356)](https://www.npmjs.com/package/@kikoda/projen-templates)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](https://github.com/KikodaCode/kikoda-projen-templates.git/blob/main/LICENSE)
 
 Use this Kikoda Projen Templates to architect and model modern applications
