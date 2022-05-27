@@ -115,8 +115,6 @@ export class KikodaOpenSourceProject<T extends NodeProject> extends Component {
   constructor(project: T, options: KikodaOpenSourceProjectOptions) {
     super(project);
 
-    project.package.addField('private', 'false');
-
     project.package.addField('author', { name: 'Kikoda, LLC', organization: true });
 
     if (project.package.license !== 'Apache-2.0')
