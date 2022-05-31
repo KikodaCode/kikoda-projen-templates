@@ -20,5 +20,5 @@ What types of changes does your code introduce? _Chedk all the boxes that apply_
 _Check all the boxes that apply_
 
 - [ ] This PR includes breaking changes which are documented in the description and associated commit messages (see the [Contributing Guide](../CONTRIBUTING.md) for more information on how this should be done)
-- [ ] This PR impacts documentation, and it has been updated(or an issue has been created and linked)
+- [ ] This PR impacts documentation, and it has been updated (or an issue has been created and linked)
 - [ ] This PR's changes are covered by the automated tests
