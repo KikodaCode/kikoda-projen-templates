@@ -1,4 +1,5 @@
 import { typescript } from 'projen';
+import { GithubCredentials } from 'projen/lib/github';
 import { KikodaOpenSourceProject, KikodaStandards } from './src/KikodaOpenSourceProject';
 
 const project = new typescript.TypeScriptProject({
@@ -14,6 +15,9 @@ const project = new typescript.TypeScriptProject({
   docgen: false,
   pullRequestTemplate: false,
   releaseToNpm: true,
+  githubOptions: {
+    projenCredentials: GithubCredentials.fromApp(),
+  },
 
   deps: ['projen'] /* Runtime dependencies of this module. */,
   peerDeps: ['projen'],
