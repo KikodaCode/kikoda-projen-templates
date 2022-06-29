@@ -11,12 +11,22 @@ const project = new typescript.TypeScriptProject({
   projenrcTs: true,
   prettier: true,
   prettierOptions: KikodaStandards.PrettierOptions,
-  tsconfig: { compilerOptions: { esModuleInterop: true } },
+  tsconfig: {
+    compilerOptions: {
+      esModuleInterop: true,
+      target: 'es2021',
+      lib: ['es2021'],
+    },
+  },
   docgen: false,
   pullRequestTemplate: false,
   releaseToNpm: true,
   githubOptions: {
     projenCredentials: GithubCredentials.fromApp(),
+  },
+  autoApproveUpgrades: true,
+  autoApproveOptions: {
+    allowedUsernames: ['projen-workflows'],
   },
 
   deps: ['projen'] /* Runtime dependencies of this module. */,
