@@ -24,6 +24,10 @@ const project = new typescript.TypeScriptProject({
   githubOptions: {
     projenCredentials: GithubCredentials.fromApp(),
   },
+  autoApproveUpgrades: true,
+  autoApproveOptions: {
+    allowedUsernames: ['projen-workflows'],
+  },
 
   deps: ['projen'] /* Runtime dependencies of this module. */,
   peerDeps: ['projen'],
