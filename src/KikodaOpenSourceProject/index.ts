@@ -76,6 +76,9 @@ export enum SupportingFiles {
   README = 'README.md',
   CODE_OF_CONDUCT = 'CODE_OF_CONDUCT.md',
   CONTRIBUTING = 'CONTRIBUTING.md',
+  BUG_REPORT = '.github/ISSUE_TEMPLATE/bug-report.yml',
+  FEATURE_REQUEST = '.github/ISSUE_TEMPLATE/feature-request.yml',
+  GITHUB_ISSUES_CONFIG = '.github/ISSUE_TEMPLATE/config.yml',
 }
 
 /**
@@ -153,6 +156,23 @@ export class KikodaOpenSourceProject<T extends NodeProject> extends Component {
         resolve(__dirname, `./assets/${SupportingFiles.CODE_OF_CONDUCT}`),
         'utf8',
       ).split('\n'),
+    });
+
+    new TextFile(project, SupportingFiles.BUG_REPORT, {
+      marker: true,
+      lines: readFileSync(resolve(__dirname, `./assets/bug-report.yml`), 'utf8').split('\n'),
+    });
+
+    new TextFile(project, SupportingFiles.FEATURE_REQUEST, {
+      marker: true,
+      lines: readFileSync(resolve(__dirname, `./assets/feature-request.yml`), 'utf8').split('\n'),
+    });
+
+    new TextFile(project, SupportingFiles.GITHUB_ISSUES_CONFIG, {
+      marker: true,
+      lines: readFileSync(resolve(__dirname, `./assets/github-issues-config.yml`), 'utf8').split(
+        '\n',
+      ),
     });
 
     // if there is an existing SampleReadme, don't synthesize it.. we'll replace this with ours.
