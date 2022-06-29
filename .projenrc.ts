@@ -26,7 +26,7 @@ const project = new typescript.TypeScriptProject({
   },
   autoApproveUpgrades: true,
   autoApproveOptions: {
-    allowedUsernames: ['projen-workflows'],
+    allowedUsernames: ['projen-workflows[bot]'],
   },
 
   deps: ['projen'] /* Runtime dependencies of this module. */,
