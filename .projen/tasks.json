@@ -79,6 +79,9 @@
       "steps": [
         {
           "exec": "tsc --build"
+        },
+        {
+          "exec": "cp -a src/KikodaOpenSourceProject/assets lib/KikodaOpenSourceProject/assets"
         }
       ]
     },

@@ -34,6 +34,10 @@ const project = new typescript.TypeScriptProject({
   // devDeps: [],             /* Build dependencies for this module. */
 });
 
+project.compileTask.exec(
+  'cp -a src/KikodaOpenSourceProject/assets lib/KikodaOpenSourceProject/assets',
+);
+
 new KikodaOpenSourceProject(project, {
   title: 'Kikoda Projen Templates',
 });
