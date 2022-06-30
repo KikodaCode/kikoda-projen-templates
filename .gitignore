@@ -54,6 +54,3 @@ junit.xml
 !/.github/pull_request_template.md
 !/CONTRIBUTING.md
 !/CODE_OF_CONDUCT.md
-!/.github/ISSUE_TEMPLATE/bug-report.yml
-!/.github/ISSUE_TEMPLATE/feature-request.yml
-!/.github/ISSUE_TEMPLATE/config.yml

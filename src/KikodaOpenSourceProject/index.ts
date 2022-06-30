@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-import { Component, SampleReadme, TextFile } from 'projen';
+import { Component, SampleFile, SampleReadme, TextFile } from 'projen';
 import { ArrowParens, EndOfLine, NodeProject, TrailingComma } from 'projen/lib/javascript';
 
 /**
@@ -158,21 +158,16 @@ export class KikodaOpenSourceProject<T extends NodeProject> extends Component {
       ).split('\n'),
     });
 
-    new TextFile(project, SupportingFiles.BUG_REPORT, {
-      marker: true,
-      lines: readFileSync(resolve(__dirname, `./assets/bug-report.yml`), 'utf8').split('\n'),
+    new SampleFile(project, SupportingFiles.BUG_REPORT, {
+      contents: readFileSync(resolve(__dirname, `./assets/bug-report.yml`), 'utf8'),
     });
 
-    new TextFile(project, SupportingFiles.FEATURE_REQUEST, {
-      marker: true,
-      lines: readFileSync(resolve(__dirname, `./assets/feature-request.yml`), 'utf8').split('\n'),
+    new SampleFile(project, SupportingFiles.FEATURE_REQUEST, {
+      contents: readFileSync(resolve(__dirname, `./assets/feature-request.yml`), 'utf8'),
     });
 
-    new TextFile(project, SupportingFiles.GITHUB_ISSUES_CONFIG, {
-      marker: true,
-      lines: readFileSync(resolve(__dirname, `./assets/github-issues-config.yml`), 'utf8').split(
-        '\n',
-      ),
+    new SampleFile(project, SupportingFiles.GITHUB_ISSUES_CONFIG, {
+      contents: readFileSync(resolve(__dirname, `./assets/github-issues-config.yml`), 'utf8'),
     });
 
     // if there is an existing SampleReadme, don't synthesize it.. we'll replace this with ours.
