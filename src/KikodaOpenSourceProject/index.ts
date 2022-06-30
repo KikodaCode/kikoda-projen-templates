@@ -146,7 +146,7 @@ export class KikodaOpenSourceProject<T extends NodeProject> extends Component {
     new TextFile(project, SupportingFiles.CONTRIBUTING, {
       marker: true,
       lines: readFileSync(resolve(__dirname, `./assets/${SupportingFiles.CONTRIBUTING}`), 'utf8')
-        .replaceAll('{{PROJECT_NAME}}', project.name)
+        .replace(/\{\{PROJECT_NAME\}\}/g, project.name)
         .split('\n'),
     });
 
@@ -182,9 +182,9 @@ export class KikodaOpenSourceProject<T extends NodeProject> extends Component {
     new SampleReadme(project, {
       filename: SupportingFiles.README,
       contents: readFileSync(resolve(__dirname, `./assets/${SupportingFiles.README}`), 'utf8')
-        .replaceAll('{{TITLE}}', options.title)
-        .replaceAll('{{PACKAGE_NAME}}', project.package.packageName)
-        .replaceAll('{{REPO_URL}}', project.package.manifest.repository.url),
+        .replace(/\{\{TITLE\}\}/g, options.title)
+        .replace(/\{\{PACKAGE_NAME\}\}/g, project.package.packageName)
+        .replace(/\{\{REPO_URL\}\}/g, project.package.manifest.repository.url),
     });
   }
 }

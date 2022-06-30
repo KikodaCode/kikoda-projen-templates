@@ -12,11 +12,7 @@ const project = new typescript.TypeScriptProject({
   prettier: true,
   prettierOptions: KikodaStandards.PrettierOptions,
   tsconfig: {
-    compilerOptions: {
-      esModuleInterop: true,
-      target: 'es2021',
-      lib: ['es2021'],
-    },
+    compilerOptions: { esModuleInterop: true },
   },
   docgen: false,
   pullRequestTemplate: false,

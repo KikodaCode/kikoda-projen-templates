@@ -7,7 +7,7 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "lib": [
-      "es2021"
+      "es2019"
     ],
     "module": "CommonJS",
     "noEmitOnError": false,
@@ -22,7 +22,7 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "stripInternal": true,
-    "target": "es2021"
+    "target": "ES2019"
   },
   "include": [
     ".projenrc.js",
