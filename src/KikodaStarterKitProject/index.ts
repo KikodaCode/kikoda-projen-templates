@@ -4,7 +4,7 @@ import { KikodaStandards } from '../common';
 export interface KikodaStarterKitProjectOptions extends TypeScriptProjectOptions {}
 
 /**
- * Closed source CDK App, Typescript
+ * Closed source starter kit app.
  *
  * @pjid kikoda-starter-kit
  */
