@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { Component, SampleFile, SampleReadme, TextFile } from 'projen';
-import { ArrowParens, EndOfLine, NodeProject, TrailingComma } from 'projen/lib/javascript';
+import { NodeProject } from 'projen/lib/javascript';
 
 /**
  * Error thrown when the package license is not Apache 2.0
@@ -45,24 +45,6 @@ export class DefaultPrTemplateError extends Error {
     );
   }
 }
-
-/**
- * Collection of sensible defaults for use in Projen options/constructors
- */
-export const KikodaStandards = {
-  PrettierOptions: {
-    settings: {
-      printWidth: 100,
-      tabWidth: 2,
-      useTabs: false,
-      semi: true,
-      singleQuote: true,
-      trailingComma: TrailingComma.ALL,
-      arrowParens: ArrowParens.AVOID,
-      endOfLine: EndOfLine.LF,
-    },
-  },
-};
 
 /**
  * Supporting files path enumeration
