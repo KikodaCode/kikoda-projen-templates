@@ -1,6 +1,7 @@
 import { typescript } from 'projen';
 import { GithubCredentials } from 'projen/lib/github';
-import { KikodaOpenSourceProject, KikodaStandards } from './src/KikodaOpenSourceProject';
+import { KikodaStandards } from './src/common';
+import { KikodaOpenSourceProject } from './src/KikodaOpenSourceProject';
 
 const project = new typescript.TypeScriptProject({
   name: 'kikoda-projen-templates',
