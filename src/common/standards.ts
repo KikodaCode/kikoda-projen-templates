@@ -1,4 +1,4 @@
-import { ArrowParens, EndOfLine, TrailingComma } from "projen/lib/javascript";
+import { ArrowParens, EndOfLine, TrailingComma } from 'projen/lib/javascript';
 
 /**
  * Collection of sensible defaults for use in Projen options/constructors
