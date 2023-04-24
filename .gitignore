@@ -51,7 +51,6 @@ junit.xml
 !/.eslintrc.json
 .jsii
 tsconfig.json
-!/NOTICE
 !/.github/pull_request_template.md
 !/CONTRIBUTING.md
 !/CODE_OF_CONDUCT.md
