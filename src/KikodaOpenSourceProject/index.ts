@@ -11,7 +11,7 @@ import { NodeProject } from 'projen/lib/javascript';
  * @typedef {InvalidLicenseError}
  * @extends {Error}
  */
-export class InvalidLicenseError extends Error {
+export class InvalidLicenseError {
   /**
    * Creates an instance of InvalidLicenseError.
    *
@@ -19,7 +19,7 @@ export class InvalidLicenseError extends Error {
    * @param {string} invalidLicense
    */
   constructor(invalidLicense: string) {
-    super(
+    throw new Error(
       `Kikoda Open Source Projects must be licensed under the Apache 2.0 open source license. Change the current license from '${invalidLicense}' to 'Apache-2.0'`,
     );
   }
@@ -33,14 +33,14 @@ export class InvalidLicenseError extends Error {
  * @typedef {DefaultPrTemplateError}
  * @extends {Error}
  */
-export class DefaultPrTemplateError extends Error {
+export class DefaultPrTemplateError {
   /**
    * Creates an instance of DefaultPrTemplateError.
    *
    * @constructor
    */
   constructor() {
-    super(
+    throw new Error(
       'Pull Request Template already exists. Disable the existing PR template to use this component',
     );
   }
@@ -77,7 +77,7 @@ export interface KikodaOpenSourceProjectOptions {
    * @readonly
    * @type {string}
    */
-  title: string;
+  readonly title: string;
 }
 
 /**
@@ -90,15 +90,14 @@ export interface KikodaOpenSourceProjectOptions {
  * @template T extends NodeProject
  * @extends {Component}
  */
-export class KikodaOpenSourceProject<T extends NodeProject> extends Component {
+export class KikodaOpenSourceProject extends Component {
   /**
    * Creates an instance of KikodaOpenSourceProject.
    *
    * @constructor
-   * @param {T} project
    * @param {KikodaOpenSourceProjectOptions} options
    */
-  constructor(project: T, options: KikodaOpenSourceProjectOptions) {
+  constructor(project: NodeProject, options: KikodaOpenSourceProjectOptions) {
     super(project);
 
     project.package.addField('author', { name: 'Kikoda, LLC', organization: true });

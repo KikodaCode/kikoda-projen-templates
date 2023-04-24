@@ -31,7 +31,7 @@ const project = new JsiiProject({
 
   deps: ['projen'] /* Runtime dependencies of this module. */,
   peerDeps: ['projen'],
-  devDeps: ['projen'],             /* Build dependencies for this module. */
+  devDeps: ['projen'] /* Build dependencies for this module. */,
 });
 
 project.compileTask.exec(

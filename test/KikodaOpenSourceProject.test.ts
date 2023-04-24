@@ -1,6 +1,6 @@
 import { FileBase } from 'projen';
 import { NodeProject } from 'projen/lib/javascript';
-import { DefaultPrTemplateError, InvalidLicenseError, KikodaOpenSourceProject } from '../src';
+import { KikodaOpenSourceProject } from '../src';
 
 describe('Kikoda Open Source Project', () => {
   describe('Default', () => {
@@ -44,7 +44,7 @@ describe('Kikoda Open Source Project', () => {
       const predicate = () =>
         new KikodaOpenSourceProject(defaultPr, { title: 'Will Throw Errors' });
 
-      expect(predicate).toThrowError(DefaultPrTemplateError);
+      expect(predicate).toThrowError();
     });
 
     test('should throw an error when license is not Apache 2.0', () => {
@@ -60,7 +60,7 @@ describe('Kikoda Open Source Project', () => {
       const predicate = () =>
         new KikodaOpenSourceProject(badLicense, { title: 'Will Throw Errors' });
 
-      expect(predicate).toThrowError(InvalidLicenseError);
+      expect(predicate).toThrowError();
     });
   });
 });
