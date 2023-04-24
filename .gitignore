@@ -44,12 +44,13 @@ junit.xml
 !/.prettierignore
 !/.prettierrc.json
 !/test/
-!/tsconfig.json
 !/tsconfig.dev.json
 !/src/
 /lib
 /dist/
 !/.eslintrc.json
+.jsii
+tsconfig.json
 !/NOTICE
 !/.github/pull_request_template.md
 !/CONTRIBUTING.md
