@@ -24,7 +24,6 @@ describe('Kikoda Open Source Project', () => {
     test.each`
       path
       ${'LICENSE'}
-      ${'NOTICE'}
       ${'.github/pull_request_template.md'}
       ${'CONTRIBUTING.md'}
       ${'CODE_OF_CONDUCT.md'}

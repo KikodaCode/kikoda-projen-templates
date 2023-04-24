@@ -124,14 +124,12 @@ export class KikodaOpenSourceProject<T extends NodeProject> extends Component {
     if (project.package.license !== 'Apache-2.0')
       throw new InvalidLicenseError(project.package.license!);
 
-    new TextFile(project, SupportingFiles.NOTICE, {
-      marker: false,
-      lines: [
-        options.title,
-        'Copyright 2022-2022 Kikoda, LLC',
-        '',
-        'This product includes software developed at Kikoda (https://www.kikoda.com)',
-      ],
+    new SampleFile(project, SupportingFiles.NOTICE, {
+      contents: `${options.title}
+Copyright 2022-2022 Kikoda, LLC
+
+This product includes software developed at Kikoda (https://www.kikoda.com),
+      `,
     });
 
     // replace existing PR Template...
