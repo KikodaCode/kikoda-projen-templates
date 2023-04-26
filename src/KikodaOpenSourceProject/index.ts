@@ -115,7 +115,6 @@ This product includes software developed at Kikoda (https://www.kikoda.com),
 
     // replace existing PR Template...
     try {
-      console.log(this.resolveAssetPath('pull_request_template.md'));
       project.github?.addPullRequestTemplate(
         readFileSync(this.resolveAssetPath('pull_request_template.md'), 'utf8'),
       );

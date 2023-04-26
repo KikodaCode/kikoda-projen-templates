@@ -28,9 +28,12 @@ export class KikodaStarterKitProject extends TypeScriptAppProject {
       tsconfig: {
         include: ['bin/**/*.ts', 'lib/**/*.ts'],
         compilerOptions: { baseUrl: '.', rootDir: '.' },
+        exclude: ['node_modules', 'cdk.out'],
       },
+      disableTsconfigDev: true,
       licensed: false,
       gitignore: ['!/lib/'],
+      sampleCode: false,
       ...options,
     });
 
@@ -99,6 +102,13 @@ export class KikodaStarterKitProject extends TypeScriptAppProject {
       filename: 'README.md',
       contents: this.readAsset('README.md'),
     });
+
+    // override tsconfig properties not supported by projen
+    const tsconfig = this.tryFindObjectFile('tsconfig.json');
+
+    if (tsconfig) {
+      tsconfig.addOverride('ts-node', { require: ['tsconfig-paths/register'] });
+    }
   }
 
   private resolveAssetPath(assetPath: string) {

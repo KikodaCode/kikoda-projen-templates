@@ -7,7 +7,7 @@ import * as components from 'lib/components';
 const awsAccount = '999999999999';
 const repoName = 'repoName'
 
-const gitHubActionRoleArn = `arn:aws:iam::${awsAccount}:role/GitHubActionRole`;
+// const gitHubActionRoleArn = `arn:aws:iam::${awsAccount}:role/GitHubActionRole`;
 
 const env = {
   account: awsAccount,
@@ -23,6 +23,7 @@ export enum StageName {
 export const app = new cdk.App();
 
 new components.AccountResourcesStack(app, 'AccountResourcesStack', {
+  env,
   repoName: repoName,
 });
 
