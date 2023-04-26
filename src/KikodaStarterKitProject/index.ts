@@ -74,8 +74,8 @@ export class KikodaStarterKitProject extends TypeScriptAppProject {
       sourceDir: this.resolveAssetPath('.vscode'),
     });
 
-    // github config
-    // app
+    // github config?
+    // app?
     //  config
     //  envs / stages
     //  networking
