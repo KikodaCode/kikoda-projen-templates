@@ -90,7 +90,16 @@
           "exec": "jsii --silence-warnings=reserved-word"
         },
         {
-          "exec": "cp -a src/KikodaOpenSourceProject/assets lib/KikodaOpenSourceProject/assets"
+          "exec": "rm -rf lib/KikodaOpenSourceProject/assets"
+        },
+        {
+          "exec": "cp -a assets/KikodaOpenSourceProject lib/KikodaOpenSourceProject/assets/"
+        },
+        {
+          "exec": "rm -rf lib/KikodaStarterKitProject/assets"
+        },
+        {
+          "exec": "cp -a assets/KikodaStarterKitProject lib/KikodaStarterKitProject/assets/"
         }
       ]
     },

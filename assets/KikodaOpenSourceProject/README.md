@@ -1,18 +1,18 @@
 [<img src="https://kikoda.com/wp-content/uploads/2019/07/Logo_White_bg.svg" width="300"/>](https://kikoda.com)
-# Kikoda Projen Templates
+# {{TITLE}}
 
-[![NPM](https://img.shields.io/npm/v/@kikoda/projen-templates?color=39a356)](https://www.npmjs.com/package/@kikoda/projen-templates)
-[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](https://github.com/KikodaCode/kikoda-projen-templates.git/blob/main/LICENSE)
+[![NPM](https://img.shields.io/npm/v/{{PACKAGE_NAME}}?color=39a356)](https://www.npmjs.com/package/{{PACKAGE_NAME}})
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)]({{REPO_URL}}/blob/main/LICENSE)
 
-Use this Kikoda Projen Templates to architect and model modern applications
+Use this {{TITLE}} to architect and model modern applications
 
 ## Install from NPM:
 ```
-yarn add --dev @kikoda/projen-templates
+yarn add --dev {{PACKAGE_NAME}}
 
 # or
 
-npm install @kikoda/projen-templates --save-dev
+npm install {{PACKAGE_NAME}} --save-dev
 ```
 
 ## Usage

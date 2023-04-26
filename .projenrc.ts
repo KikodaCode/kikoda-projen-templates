@@ -28,16 +28,22 @@ const project = new JsiiProject({
   autoApproveOptions: {
     allowedUsernames: ['projen-workflows[bot]'],
   },
-
   deps: ['projen'] /* Runtime dependencies of this module. */,
   peerDeps: ['projen'],
   devDeps: ['projen'] /* Build dependencies for this module. */,
 });
 
+project.compileTask.exec('rm -rf lib/KikodaOpenSourceProject/assets');
+
 project.compileTask.exec(
-  'cp -a src/KikodaOpenSourceProject/assets lib/KikodaOpenSourceProject/assets',
+  'cp -a assets/KikodaOpenSourceProject lib/KikodaOpenSourceProject/assets/',
 );
 
+project.compileTask.exec('rm -rf lib/KikodaStarterKitProject/assets');
+
+project.compileTask.exec(
+  'cp -a assets/KikodaStarterKitProject lib/KikodaStarterKitProject/assets/',
+);
 new KikodaOpenSourceProject(project, {
   title: 'Kikoda Projen Templates',
 });

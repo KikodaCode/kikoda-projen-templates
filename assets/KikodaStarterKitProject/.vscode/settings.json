@@ -1,0 +1,21 @@
+{
+  "files.autoSave": "afterDelay",
+  "editor.codeActionsOnSave": {
+    // "source.organizeImports": true, // conflicts with eslint/prettier
+    "source.fixAll.eslint": true
+  },
+  "files.eol": "\n",
+  "editor.formatOnSave": true,
+  "eslint.run": "onType",
+  "eslint.debug": true,
+  "eslint.packageManager": "yarn",
+  "eslint.alwaysShowStatus": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+}
