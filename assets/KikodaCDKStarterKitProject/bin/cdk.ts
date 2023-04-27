@@ -6,14 +6,16 @@ import * as components from 'lib/components';
 
 // put your aws account number here
 const awsAccount = '999999999999';
-// put your github repo name here
+// put your aws region here
+const awsRegion = 'us-east-1';
+// put your github repo name here. 'KikodaCode/kikoda-projen-templates'
 const repoName = 'repoName';
 
 // const gitHubActionRoleArn = `arn:aws:iam::${awsAccount}:role/GitHubActionRole`;
 
 const env = {
   account: awsAccount,
-  region: 'us-east-1',
+  region: awsRegion,
 };
 
 export enum StageName {

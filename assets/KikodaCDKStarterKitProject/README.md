@@ -6,7 +6,7 @@ This was bootstrapped with the [Kikoda CDK Starter Kit](https://github.com/Kikod
 
 > TODO: finish steps and details needed to deploy this application.
 
-1. Install and configure AWS CLI...
+1. Install the AWS CLI and configure your credentials.
 1. Edit `bin/cdk.ts` to include the appropriate AWS account number and GitHub repository.
 1. Manually deploy account core stack...
     1. `yarn`
@@ -39,13 +39,17 @@ Each stage may have a slightly different configuration, which can be adjusted us
 │   ├── config/                   - Stage (development environment) configuration files.
 │   └── cdk.ts                    - CDK application entry point.
 ├── lib/                          - Application and infrastructure code.
-│   ├── components/               - ???
-│   └── constructs/               - ???
-├── package.json                  - Node configuration file. 
+│   ├── components/               - CDK stacks/pipelines/stages and application code organized into logical units.
+│   └── constructs/               - Custom CDK building blocks used by components.
+├── package.json                  - Node configuration file.
 └── *                             - Various other configuration files (eslint, prettier, git, typescript).
 ```
 
-## Useful commands
+## Development Workflow
+
+> TODO: outline expected dev workflow.
+
+## Useful Commands
 
 - `yarn cdk ls` — List infrastructure stacks.
 - `yarn cdk diff` — Diff infrastructure against what is in CloudFormation.
