@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  // Files included in linting.
+  "include": ["bin/", "lib/", "*.js", ".projenrc.ts"]
+}

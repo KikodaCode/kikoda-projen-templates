@@ -4,8 +4,10 @@ import * as cdk from 'aws-cdk-lib';
 // import * as config from 'bin/config';
 import * as components from 'lib/components';
 
+// put your aws account number here
 const awsAccount = '999999999999';
-const repoName = 'repoName'
+// put your github repo name here
+const repoName = 'repoName';
 
 // const gitHubActionRoleArn = `arn:aws:iam::${awsAccount}:role/GitHubActionRole`;
 

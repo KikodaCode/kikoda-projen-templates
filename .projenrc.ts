@@ -39,10 +39,10 @@ project.compileTask.exec(
   'cp -a assets/KikodaOpenSourceProject lib/KikodaOpenSourceProject/assets/',
 );
 
-project.compileTask.exec('rm -rf lib/KikodaStarterKitProject/assets');
+project.compileTask.exec('rm -rf lib/KikodaCDKStarterKitProject/assets');
 
 project.compileTask.exec(
-  'cp -a assets/KikodaStarterKitProject lib/KikodaStarterKitProject/assets/',
+  'cp -a assets/KikodaCDKStarterKitProject lib/KikodaCDKStarterKitProject/assets/',
 );
 new KikodaOpenSourceProject(project, {
   title: 'Kikoda Projen Templates',

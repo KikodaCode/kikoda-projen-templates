@@ -96,10 +96,10 @@
           "exec": "cp -a assets/KikodaOpenSourceProject lib/KikodaOpenSourceProject/assets/"
         },
         {
-          "exec": "rm -rf lib/KikodaStarterKitProject/assets"
+          "exec": "rm -rf lib/KikodaCDKStarterKitProject/assets"
         },
         {
-          "exec": "cp -a assets/KikodaStarterKitProject lib/KikodaStarterKitProject/assets/"
+          "exec": "cp -a assets/KikodaCDKStarterKitProject lib/KikodaCDKStarterKitProject/assets/"
         }
       ]
     },

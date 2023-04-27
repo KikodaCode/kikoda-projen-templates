@@ -4,24 +4,13 @@ import { SampleDir, SampleFile, SampleReadme } from 'projen';
 import { TypeScriptAppProject, TypeScriptProjectOptions } from 'projen/lib/typescript';
 import { KikodaStandards } from '../common';
 
-export enum DatabaseType {
-  POSTGRESQL = 'PostgreSQL',
-  MYSQL = 'MySQL',
-}
-
-export interface KikodaStarterKitProjectOptions extends TypeScriptProjectOptions {
-  readonly databaseType?: DatabaseType;
-}
-
 /**
- * Starter kit project. This project is designed to help teams bootstrap new efforts and projects faster.
+ * CDK starter kit project. This project is designed to help teams bootstrap new efforts faster.
  *
- * @pjid kikoda-starter-kit
+ * @pjid kikoda-cdk-starter-kit
  */
-export class KikodaStarterKitProject extends TypeScriptAppProject {
-  // private options: KikodaStarterKitProjectOptions;
-
-  constructor(options: KikodaStarterKitProjectOptions) {
+export class KikodaCDKStarterKitProject extends TypeScriptAppProject {
+  constructor(options: TypeScriptProjectOptions) {
     super({
       prettier: true,
       prettierOptions: KikodaStandards.PrettierOptions,
@@ -30,14 +19,16 @@ export class KikodaStarterKitProject extends TypeScriptAppProject {
         compilerOptions: { baseUrl: '.', rootDir: '.' },
         exclude: ['node_modules', 'cdk.out'],
       },
+      eslintOptions: {
+        dirs: ['bin', 'lib'],
+        tsconfigPath: 'tsconfig.eslint.json',
+      },
       disableTsconfigDev: true,
       licensed: false,
-      gitignore: ['!/lib/'],
+      gitignore: ['!/lib/', '.cdk.staging', 'cdk.out', '*.d.ts'],
       sampleCode: false,
       ...options,
     });
-
-    // this.options = options;
 
     // cdk dependencies
     this.addDeps(
@@ -75,6 +66,11 @@ export class KikodaStarterKitProject extends TypeScriptAppProject {
     // vscode config folder
     new SampleDir(this, '.vscode', {
       sourceDir: this.resolveAssetPath('.vscode'),
+    });
+
+    // eslint+ts project config
+    new SampleFile(this, 'tsconfig.eslint.json', {
+      sourcePath: this.resolveAssetPath('tsconfig.eslint.json'),
     });
 
     // github config?

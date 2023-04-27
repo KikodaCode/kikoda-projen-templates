@@ -1,2 +1,2 @@
 export * from './KikodaOpenSourceProject';
-export * from './KikodaStarterKitProject';
+export * from './KikodaCDKStarterKitProject';
