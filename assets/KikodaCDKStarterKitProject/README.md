@@ -7,7 +7,7 @@ This was bootstrapped with the [Kikoda CDK Starter Kit](https://github.com/Kikod
 > TODO: finish steps and details needed to deploy this application.
 
 1. Install the AWS CLI and configure your credentials.
-1. Edit `bin/cdk.ts` to include the appropriate AWS account number and GitHub repository.
+1. Edit `bin/cdk.ts` to include the appropriate AWS account number, region, and GitHub repository.
 1. Manually deploy account core stack...
     1. `yarn`
     1. `yarn cdk synth`
