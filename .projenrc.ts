@@ -1,12 +1,16 @@
-import { typescript } from 'projen';
+import { JsiiProject } from 'projen/lib/cdk';
 import { GithubCredentials } from 'projen/lib/github';
-import { KikodaOpenSourceProject, KikodaStandards } from './src/KikodaOpenSourceProject';
+import { KikodaStandards } from './src/common';
+import { KikodaOpenSourceProject } from './src/KikodaOpenSourceProject';
 
-const project = new typescript.TypeScriptProject({
+const project = new JsiiProject({
   name: 'kikoda-projen-templates',
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
+  author: 'Kikoda, LLC',
+  authorAddress: 'platform@kikoda.com',
   packageName: '@kikoda/projen-templates',
   repository: 'https://github.com/KikodaCode/kikoda-projen-templates.git',
+  repositoryUrl: 'https://github.com/KikodaCode/kikoda-projen-templates.git',
   defaultReleaseBranch: 'main',
   projenrcTs: true,
   prettier: true,
@@ -24,16 +28,22 @@ const project = new typescript.TypeScriptProject({
   autoApproveOptions: {
     allowedUsernames: ['projen-workflows[bot]'],
   },
-
   deps: ['projen'] /* Runtime dependencies of this module. */,
   peerDeps: ['projen'],
-  // devDeps: [],             /* Build dependencies for this module. */
+  devDeps: ['projen'] /* Build dependencies for this module. */,
 });
 
+project.compileTask.exec('rm -rf lib/KikodaOpenSourceProject/assets');
+
 project.compileTask.exec(
-  'cp -a src/KikodaOpenSourceProject/assets lib/KikodaOpenSourceProject/assets',
+  'cp -a assets/KikodaOpenSourceProject lib/KikodaOpenSourceProject/assets/',
 );
 
+project.compileTask.exec('rm -rf lib/KikodaCDKStarterKitProject/assets');
+
+project.compileTask.exec(
+  'cp -a assets/KikodaCDKStarterKitProject lib/KikodaCDKStarterKitProject/assets/',
+);
 new KikodaOpenSourceProject(project, {
   title: 'Kikoda Projen Templates',
 });

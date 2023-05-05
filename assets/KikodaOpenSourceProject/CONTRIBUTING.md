@@ -6,7 +6,7 @@ _Please refer to the README.md for information about the structure of this repo_
 
 1. Fork, clone and branch off `main`:
     ```bash
-    git clone git@github.com:<your-username>/kikoda-projen-templates.git
+    git clone git@github.com:<your-username>/{{PROJECT_NAME}}.git
     git checkout -b <my-branch>
     ```
 2. If you're using an editor that supports [Dev Containers](https://devcontainers.github.io), you can optionally start your editor with the provided Dev Container configuratiuon. If not, be sure to install dependencies with `yarn install`.

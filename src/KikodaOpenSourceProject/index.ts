@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { Component, SampleFile, SampleReadme, TextFile } from 'projen';
-import { ArrowParens, EndOfLine, NodeProject, TrailingComma } from 'projen/lib/javascript';
+import { NodeProject } from 'projen/lib/javascript';
 
 /**
  * Error thrown when the package license is not Apache 2.0
@@ -11,7 +11,7 @@ import { ArrowParens, EndOfLine, NodeProject, TrailingComma } from 'projen/lib/j
  * @typedef {InvalidLicenseError}
  * @extends {Error}
  */
-export class InvalidLicenseError extends Error {
+export class InvalidLicenseError {
   /**
    * Creates an instance of InvalidLicenseError.
    *
@@ -19,7 +19,7 @@ export class InvalidLicenseError extends Error {
    * @param {string} invalidLicense
    */
   constructor(invalidLicense: string) {
-    super(
+    throw new Error(
       `Kikoda Open Source Projects must be licensed under the Apache 2.0 open source license. Change the current license from '${invalidLicense}' to 'Apache-2.0'`,
     );
   }
@@ -33,36 +33,18 @@ export class InvalidLicenseError extends Error {
  * @typedef {DefaultPrTemplateError}
  * @extends {Error}
  */
-export class DefaultPrTemplateError extends Error {
+export class DefaultPrTemplateError {
   /**
    * Creates an instance of DefaultPrTemplateError.
    *
    * @constructor
    */
   constructor() {
-    super(
+    throw new Error(
       'Pull Request Template already exists. Disable the existing PR template to use this component',
     );
   }
 }
-
-/**
- * Collection of sensible defaults for use in Projen options/constructors
- */
-export const KikodaStandards = {
-  PrettierOptions: {
-    settings: {
-      printWidth: 100,
-      tabWidth: 2,
-      useTabs: false,
-      semi: true,
-      singleQuote: true,
-      trailingComma: TrailingComma.ALL,
-      arrowParens: ArrowParens.AVOID,
-      endOfLine: EndOfLine.LF,
-    },
-  },
-};
 
 /**
  * Supporting files path enumeration
@@ -95,7 +77,7 @@ export interface KikodaOpenSourceProjectOptions {
    * @readonly
    * @type {string}
    */
-  title: string;
+  readonly title: string;
 }
 
 /**
@@ -108,15 +90,14 @@ export interface KikodaOpenSourceProjectOptions {
  * @template T extends NodeProject
  * @extends {Component}
  */
-export class KikodaOpenSourceProject<T extends NodeProject> extends Component {
+export class KikodaOpenSourceProject extends Component {
   /**
    * Creates an instance of KikodaOpenSourceProject.
    *
    * @constructor
-   * @param {T} project
    * @param {KikodaOpenSourceProjectOptions} options
    */
-  constructor(project: T, options: KikodaOpenSourceProjectOptions) {
+  constructor(project: NodeProject, options: KikodaOpenSourceProjectOptions) {
     super(project);
 
     project.package.addField('author', { name: 'Kikoda, LLC', organization: true });
@@ -135,7 +116,7 @@ This product includes software developed at Kikoda (https://www.kikoda.com),
     // replace existing PR Template...
     try {
       project.github?.addPullRequestTemplate(
-        readFileSync(resolve(__dirname, './assets/pull_request_template.md'), 'utf8'),
+        readFileSync(this.resolveAssetPath('pull_request_template.md'), 'utf8'),
       );
     } catch {
       throw new DefaultPrTemplateError();
@@ -143,29 +124,28 @@ This product includes software developed at Kikoda (https://www.kikoda.com),
 
     new TextFile(project, SupportingFiles.CONTRIBUTING, {
       marker: true,
-      lines: readFileSync(resolve(__dirname, `./assets/${SupportingFiles.CONTRIBUTING}`), 'utf8')
+      lines: readFileSync(this.resolveAssetPath(SupportingFiles.CONTRIBUTING), 'utf8')
         .replace(/\{\{PROJECT_NAME\}\}/g, project.name)
         .split('\n'),
     });
 
     new TextFile(project, SupportingFiles.CODE_OF_CONDUCT, {
       marker: true,
-      lines: readFileSync(
-        resolve(__dirname, `./assets/${SupportingFiles.CODE_OF_CONDUCT}`),
-        'utf8',
-      ).split('\n'),
+      lines: readFileSync(this.resolveAssetPath(SupportingFiles.CODE_OF_CONDUCT), 'utf8').split(
+        '\n',
+      ),
     });
 
     new SampleFile(project, SupportingFiles.BUG_REPORT, {
-      contents: readFileSync(resolve(__dirname, `./assets/bug-report.yml`), 'utf8'),
+      contents: readFileSync(this.resolveAssetPath('bug-report.yml'), 'utf8'),
     });
 
     new SampleFile(project, SupportingFiles.FEATURE_REQUEST, {
-      contents: readFileSync(resolve(__dirname, `./assets/feature-request.yml`), 'utf8'),
+      contents: readFileSync(this.resolveAssetPath('feature-request.yml'), 'utf8'),
     });
 
     new SampleFile(project, SupportingFiles.GITHUB_ISSUES_CONFIG, {
-      contents: readFileSync(resolve(__dirname, `./assets/github-issues-config.yml`), 'utf8'),
+      contents: readFileSync(this.resolveAssetPath('github-issues-config.yml'), 'utf8'),
     });
 
     // if there is an existing SampleReadme, don't synthesize it.. we'll replace this with ours.
@@ -174,10 +154,14 @@ This product includes software developed at Kikoda (https://www.kikoda.com),
 
     new SampleReadme(project, {
       filename: SupportingFiles.README,
-      contents: readFileSync(resolve(__dirname, `./assets/${SupportingFiles.README}`), 'utf8')
+      contents: readFileSync(this.resolveAssetPath(SupportingFiles.README), 'utf8')
         .replace(/\{\{TITLE\}\}/g, options.title)
         .replace(/\{\{PACKAGE_NAME\}\}/g, project.package.packageName)
         .replace(/\{\{REPO_URL\}\}/g, project.package.manifest.repository.url),
     });
+  }
+
+  private resolveAssetPath(assetPath: string) {
+    return resolve(__dirname, '..', '..', 'assets', 'KikodaOpenSourceProject', assetPath);
   }
 }
