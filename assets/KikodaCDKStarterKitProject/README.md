@@ -6,7 +6,7 @@ This was bootstrapped with the [Kikoda CDK Starter Kit](https://github.com/Kikod
 
 > TODO: finish steps and details needed to deploy this application.
 
-1. Install the AWS CLI and configure your credentials.
+1. [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) and [configure your credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
 1. Edit `bin/cdk.ts` to include the appropriate AWS account number, region, and GitHub repository.
 1. Manually deploy account core stack...
     1. `yarn`
@@ -14,14 +14,14 @@ This was bootstrapped with the [Kikoda CDK Starter Kit](https://github.com/Kikod
     1. `yarn cdk bootstrap aws://1234/us-east-1 --profile 1234`
     1. `yarn cdk deploy AccountResourcesStack --profile 1234`
 1. Link GitHub...
-1. Start building...
+1. You're now ready to start building your solution!
 
 ## Stages
 
 Stages, also known as development environments, are used as part of the standard software development life cycle to control the rate and types of changes introduced to a specific set of users. They are normally used as part of a larger change and release management process.
 
 - `dev` — Used by the engineering team for rapid development and exploration. Often buggy and incomplete.
-- `staging` — Used by the customer, or product owner, to review and approve of changes before they are made to production. Should be bug free and complete.
+- `staging` — Used by the customer, or product owner, to review and approve of changes before they are made to prod. Should be bug free and complete.
 - `prod` — Used by the end user. Should be bug free and complete.
 
 Each stage may have a slightly different configuration, which can be adjusted using the files in `bin/config/`.

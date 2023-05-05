@@ -18,6 +18,15 @@ npm install @kikoda/projen-templates --save-dev
 ## Usage
 <!-- TODO: add Usage & Examples -->
 
+### CDK Starter Kit
+
+<!-- TODO: what/why is it, who/when should use it -->
+
+To use the CDK starter kit as a launching point for a new effort:
+
+* Create a new empty folder to store your code.
+* In the new folder run `npx projen new --from @kikoda/kikoda-projen-templates`
+
 ## Opening Issues
 
 If you encounter a bug with this package, we want to hear about it. Before opening a new issue, search the existing issues to avoid duplicates.

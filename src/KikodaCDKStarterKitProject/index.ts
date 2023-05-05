@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-import { SampleDir, SampleFile, SampleReadme } from 'projen';
+import { IgnoreFile, SampleDir, SampleFile, SampleReadme } from 'projen';
 import { TypeScriptAppProject, TypeScriptProjectOptions } from 'projen/lib/typescript';
 import { KikodaStandards } from '../common';
 
@@ -16,8 +16,8 @@ export class KikodaCDKStarterKitProject extends TypeScriptAppProject {
       prettierOptions: KikodaStandards.PrettierOptions,
       tsconfig: {
         include: ['bin/**/*.ts', 'lib/**/*.ts'],
-        compilerOptions: { baseUrl: '.', rootDir: '.' },
         exclude: ['node_modules', 'cdk.out'],
+        compilerOptions: { baseUrl: '.', rootDir: '.' },
       },
       eslintOptions: {
         dirs: ['bin', 'lib'],
@@ -25,7 +25,8 @@ export class KikodaCDKStarterKitProject extends TypeScriptAppProject {
       },
       disableTsconfigDev: true,
       licensed: false,
-      gitignore: ['!/lib/', '.cdk.staging', 'cdk.out', '*.d.ts'],
+      // gitignore doesn't work right, see overrides below
+      gitignore: ['!/lib/', '!/lib', '.cdk.staging', 'cdk.out', '*.d.ts'],
       sampleCode: false,
       ...options,
     });
@@ -105,6 +106,15 @@ export class KikodaCDKStarterKitProject extends TypeScriptAppProject {
     if (tsconfig) {
       tsconfig.addOverride('ts-node', { require: ['tsconfig-paths/register'] });
     }
+
+    // ignore inherited .gitignore
+    // we are doing this only because projen doesn't properly handle the overrides passed to super above
+    this.tryRemoveFile('.gitignore');
+
+    // .gitignore
+    const gitignore = new IgnoreFile(this, '.gitignore');
+
+    gitignore.addPatterns(...this.readAssetAsArray('gitignore'));
   }
 
   private resolveAssetPath(assetPath: string) {
@@ -116,5 +126,9 @@ export class KikodaCDKStarterKitProject extends TypeScriptAppProject {
       /\{\{PACKAGE_NAME\}\}/g,
       this.package.packageName,
     );
+  }
+
+  private readAssetAsArray(assetPath: string) {
+    return this.readAsset(assetPath).split(/\r?\n/);
   }
 }
