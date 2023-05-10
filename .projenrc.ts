@@ -1,3 +1,6 @@
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+import { IgnoreFile } from 'projen';
 import { JsiiProject } from 'projen/lib/cdk';
 import { GithubCredentials } from 'projen/lib/github';
 import { KikodaStandards } from './src/common';
@@ -18,6 +21,8 @@ const project = new JsiiProject({
   tsconfig: {
     compilerOptions: { esModuleInterop: true },
   },
+  // gitignore doesn't work right, see overrides below
+  gitignore: ['!.jsii'],
   docgen: false,
   pullRequestTemplate: false,
   releaseToNpm: true,
@@ -44,8 +49,30 @@ project.compileTask.exec('rm -rf lib/KikodaCDKStarterKitProject/assets');
 project.compileTask.exec(
   'cp -a assets/KikodaCDKStarterKitProject lib/KikodaCDKStarterKitProject/assets/',
 );
+
 new KikodaOpenSourceProject(project, {
   title: 'Kikoda Projen Templates',
 });
 
+// ignore inherited .gitignore
+// we are doing this only because projen doesn't properly handle the overrides passed to super above
+project.tryRemoveFile('.gitignore');
+
+// .gitignore
+const gitignore = new IgnoreFile(project, '.gitignore');
+
+gitignore.addPatterns(...readAssetAsArray('gitignore'));
+
 project.synth();
+
+function resolveAssetPath(assetPath: string) {
+  return resolve(__dirname, 'assets', assetPath);
+}
+
+function readAsset(assetPath: string) {
+  return readFileSync(resolveAssetPath(assetPath), 'utf8');
+}
+
+function readAssetAsArray(assetPath: string) {
+  return readAsset(assetPath).split(/\r?\n/);
+}

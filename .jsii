@@ -1,0 +1,362 @@
+{
+  "author": {
+    "name": "Kikoda, LLC",
+    "organization": true,
+    "roles": [
+      "author"
+    ]
+  },
+  "dependencies": {
+    "projen": "^0.71.39"
+  },
+  "dependencyClosure": {
+    "projen": {
+      "submodules": {
+        "projen.awscdk": {},
+        "projen.build": {},
+        "projen.cdk": {},
+        "projen.cdk8s": {},
+        "projen.cdktf": {},
+        "projen.circleci": {},
+        "projen.github": {},
+        "projen.github.workflows": {},
+        "projen.gitlab": {},
+        "projen.java": {},
+        "projen.javascript": {},
+        "projen.python": {},
+        "projen.release": {},
+        "projen.typescript": {},
+        "projen.vscode": {},
+        "projen.web": {}
+      },
+      "targets": {
+        "go": {
+          "moduleName": "github.com/projen/projen-go"
+        },
+        "java": {
+          "maven": {
+            "artifactId": "projen",
+            "groupId": "io.github.cdklabs"
+          },
+          "package": "io.github.cdklabs.projen"
+        },
+        "js": {
+          "npm": "projen"
+        },
+        "python": {
+          "distName": "projen",
+          "module": "projen"
+        }
+      }
+    }
+  },
+  "description": "@kikoda/projen-templates",
+  "docs": {
+    "stability": "stable"
+  },
+  "homepage": "https://github.com/KikodaCode/kikoda-projen-templates.git",
+  "jsiiVersion": "1.80.0 (build bce6a1d)",
+  "license": "Apache-2.0",
+  "metadata": {
+    "jsii": {
+      "pacmak": {
+        "hasDefaultInterfaces": true
+      }
+    },
+    "tscRootDir": "src"
+  },
+  "name": "@kikoda/projen-templates",
+  "readme": {
+    "markdown": "[<img src=\"https://kikoda.com/wp-content/uploads/2019/07/Logo_White_bg.svg\" width=\"300\"/>](https://kikoda.com)\n# Kikoda Projen Templates\n\n[![NPM](https://img.shields.io/npm/v/@kikoda/projen-templates?color=39a356)](https://www.npmjs.com/package/@kikoda/projen-templates)\n[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](https://github.com/KikodaCode/kikoda-projen-templates.git/blob/main/LICENSE)\n\nUse this Kikoda Projen Templates to architect and model modern applications\n\n## Install from NPM:\n```\nyarn add --dev @kikoda/projen-templates\n\n# or\n\nnpm install @kikoda/projen-templates --save-dev\n```\n\n## Usage\n<!-- TODO: add Usage & Examples -->\n\n### CDK Starter Kit\n\n<!-- TODO: what/why is it, who/when should use it -->\n\nTo use the CDK starter kit as a launching point for a new effort:\n\n* Create a new empty folder to store your code.\n* In the new folder run `npx projen new --from @kikoda/kikoda-projen-templates`\n\n## Opening Issues\n\nIf you encounter a bug with this package, we want to hear about it. Before opening a new issue, search the existing issues to avoid duplicates.\n\nWhen opening an issue, include the Kikoda Construct Library version, Node version, and stack trace if available. In addition, include the steps to reproduce when appropriate.\n\nYou can also open an issue for a feature request.\n\n## Contributing\n\nIf you find an issue with this package and have a fix, please feel free to open a pull request following the [procedures](CONTRIBUTING.md).\n\n## Testing\n\nIf you contribute to this package you can run the tests using `yarn test`.\n\n## License\n\nUnless explicitly stated otherwise all files in this repository are licensed under the Apache License Version 2.0.\n\nThis product includes software developed at Kikoda (https://www.kikoda.com). Copyright 2022 Kikoda, LLC."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KikodaCode/kikoda-projen-templates.git"
+  },
+  "schema": "jsii/0.10.0",
+  "targets": {
+    "js": {
+      "npm": "@kikoda/projen-templates"
+    }
+  },
+  "types": {
+    "@kikoda/projen-templates.DefaultPrTemplateError": {
+      "assembly": "@kikoda/projen-templates",
+      "docs": {
+        "custom": {
+          "class": "DefaultPrTemplateError",
+          "export": "true",
+          "extends": "Error",
+          "typedef": "true"
+        },
+        "stability": "stable",
+        "summary": "Error thrown when the default Pull Request teplate is enabled."
+      },
+      "fqn": "@kikoda/projen-templates.DefaultPrTemplateError",
+      "initializer": {
+        "docs": {
+          "custom": {
+            "constructor": "true"
+          },
+          "stability": "stable",
+          "summary": "Creates an instance of DefaultPrTemplateError."
+        },
+        "locationInModule": {
+          "filename": "src/KikodaOpenSourceProject/index.ts",
+          "line": 42
+        }
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/KikodaOpenSourceProject/index.ts",
+        "line": 36
+      },
+      "name": "DefaultPrTemplateError",
+      "symbolId": "src/KikodaOpenSourceProject/index:DefaultPrTemplateError"
+    },
+    "@kikoda/projen-templates.InvalidLicenseError": {
+      "assembly": "@kikoda/projen-templates",
+      "docs": {
+        "custom": {
+          "class": "InvalidLicenseError",
+          "export": "true",
+          "extends": "Error",
+          "typedef": "true"
+        },
+        "stability": "stable",
+        "summary": "Error thrown when the package license is not Apache 2.0."
+      },
+      "fqn": "@kikoda/projen-templates.InvalidLicenseError",
+      "initializer": {
+        "docs": {
+          "custom": {
+            "constructor": "true"
+          },
+          "stability": "stable",
+          "summary": "Creates an instance of InvalidLicenseError."
+        },
+        "locationInModule": {
+          "filename": "src/KikodaOpenSourceProject/index.ts",
+          "line": 21
+        },
+        "parameters": [
+          {
+            "name": "invalidLicense",
+            "type": {
+              "primitive": "string"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/KikodaOpenSourceProject/index.ts",
+        "line": 14
+      },
+      "name": "InvalidLicenseError",
+      "symbolId": "src/KikodaOpenSourceProject/index:InvalidLicenseError"
+    },
+    "@kikoda/projen-templates.KikodaCDKStarterKitProject": {
+      "assembly": "@kikoda/projen-templates",
+      "base": "projen.typescript.TypeScriptAppProject",
+      "docs": {
+        "custom": {
+          "pjid": "kikoda-cdk-starter-kit"
+        },
+        "remarks": "This project is designed to help teams bootstrap new efforts faster.",
+        "stability": "stable",
+        "summary": "CDK starter kit project."
+      },
+      "fqn": "@kikoda/projen-templates.KikodaCDKStarterKitProject",
+      "initializer": {
+        "docs": {
+          "stability": "stable"
+        },
+        "locationInModule": {
+          "filename": "src/KikodaCDKStarterKitProject/index.ts",
+          "line": 13
+        },
+        "parameters": [
+          {
+            "name": "options",
+            "type": {
+              "fqn": "projen.typescript.TypeScriptProjectOptions"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/KikodaCDKStarterKitProject/index.ts",
+        "line": 12
+      },
+      "name": "KikodaCDKStarterKitProject",
+      "symbolId": "src/KikodaCDKStarterKitProject/index:KikodaCDKStarterKitProject"
+    },
+    "@kikoda/projen-templates.KikodaOpenSourceProject": {
+      "assembly": "@kikoda/projen-templates",
+      "base": "projen.Component",
+      "docs": {
+        "custom": {
+          "class": "KikodaOpenSourceProject",
+          "export": "true",
+          "extends": "Component",
+          "template": "T extends NodeProject",
+          "typedef": "true"
+        },
+        "stability": "stable",
+        "summary": "Generates standardized files and artifacts associated with a Kikoda Open Source Project."
+      },
+      "fqn": "@kikoda/projen-templates.KikodaOpenSourceProject",
+      "initializer": {
+        "docs": {
+          "custom": {
+            "constructor": "true"
+          },
+          "stability": "stable",
+          "summary": "Creates an instance of KikodaOpenSourceProject."
+        },
+        "locationInModule": {
+          "filename": "src/KikodaOpenSourceProject/index.ts",
+          "line": 100
+        },
+        "parameters": [
+          {
+            "name": "project",
+            "type": {
+              "fqn": "projen.javascript.NodeProject"
+            }
+          },
+          {
+            "name": "options",
+            "type": {
+              "fqn": "@kikoda/projen-templates.KikodaOpenSourceProjectOptions"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/KikodaOpenSourceProject/index.ts",
+        "line": 93
+      },
+      "name": "KikodaOpenSourceProject",
+      "symbolId": "src/KikodaOpenSourceProject/index:KikodaOpenSourceProject"
+    },
+    "@kikoda/projen-templates.KikodaOpenSourceProjectOptions": {
+      "assembly": "@kikoda/projen-templates",
+      "datatype": true,
+      "docs": {
+        "custom": {
+          "export": "true",
+          "interface": "KikodaOpenSourceProjectOptions",
+          "typedef": "true"
+        },
+        "stability": "stable",
+        "summary": "Options used to generate Kikoda Open Source Project and Artifacts."
+      },
+      "fqn": "@kikoda/projen-templates.KikodaOpenSourceProjectOptions",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/KikodaOpenSourceProject/index.ts",
+        "line": 73
+      },
+      "name": "KikodaOpenSourceProjectOptions",
+      "properties": [
+        {
+          "abstract": true,
+          "docs": {
+            "custom": {
+              "readonly": "true",
+              "type": "{string}"
+            },
+            "remarks": "This will be used in various files like README, NOTICE, etc.",
+            "stability": "stable",
+            "summary": "Describe your project."
+          },
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/KikodaOpenSourceProject/index.ts",
+            "line": 80
+          },
+          "name": "title",
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/KikodaOpenSourceProject/index:KikodaOpenSourceProjectOptions"
+    },
+    "@kikoda/projen-templates.SupportingFiles": {
+      "assembly": "@kikoda/projen-templates",
+      "docs": {
+        "custom": {
+          "enum": "true",
+          "export": "true"
+        },
+        "stability": "stable",
+        "summary": "Supporting files path enumeration."
+      },
+      "fqn": "@kikoda/projen-templates.SupportingFiles",
+      "kind": "enum",
+      "locationInModule": {
+        "filename": "src/KikodaOpenSourceProject/index.ts",
+        "line": 55
+      },
+      "members": [
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "name": "LICENSE"
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "name": "NOTICE"
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "name": "README"
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "name": "CODE_OF_CONDUCT"
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "name": "CONTRIBUTING"
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "name": "BUG_REPORT"
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "name": "FEATURE_REQUEST"
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "name": "GITHUB_ISSUES_CONFIG"
+        }
+      ],
+      "name": "SupportingFiles",
+      "symbolId": "src/KikodaOpenSourceProject/index:SupportingFiles"
+    }
+  },
+  "version": "0.0.0",
+  "fingerprint": "aAF6CL12cKaiLM4hmxok9zLUoCrByUFfBtmjW5N9UlY="
+}
