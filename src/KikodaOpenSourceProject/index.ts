@@ -121,8 +121,9 @@ export class KikodaOpenSourceProject<T extends NodeProject> extends Component {
 
     project.package.addField('author', { name: 'Kikoda, LLC', organization: true });
 
-    if (project.package.license !== 'Apache-2.0')
+    if (project.package.license !== 'Apache-2.0') {
       throw new InvalidLicenseError(project.package.license!);
+    }
 
     new SampleFile(project, SupportingFiles.NOTICE, {
       contents: `${options.title}
